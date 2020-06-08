@@ -1,0 +1,53 @@
+<p-toast></p-toast>
+<div class="p-4">
+    <div class="float-right pb-4 col-md-12">
+        <p-button label="Add user" icon="pi pi-plus" (onClick)="addRecord(true)" styleClass="ui-button-info">   
+        </p-button>    
+    </div>
+    <div *ngIf="showFormDiv">
+        <form [formGroup]="recordForm">
+            <div class="row">
+                <div class="col">
+                    <input type="text" class="form-control" formControlName="firstName" placeholder="First name" />
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" formControlName="lastName" placeholder="Last name" />
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" formControlName="dob" placeholder="Date of birth" />
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" formControlName="qualification" placeholder="Qualification" />
+                </div>
+                <div class="col">
+                    <p-button label="Submit" (onClick)="submit(recordForm.value)" styleClass="ui-button-info"></p-button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th>ID</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Date of birth</th>
+                <th>Qualification</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of _users">
+                <td>{{ user.id }}</td>
+                <td>{{ user.firstName }}</td>
+                <td>{{ user.lastName }}</td>
+                <td>{{ user.dob }}</td>
+                <td>{{ user.qualification }}</td>
+                <td>
+                    <p-button label="Edit" icon="pi pi-pencil" (onClick)="updateUser(user)" styleClass="ui-button-info mr-2"></p-button>
+                    <p-button label="Delete" icon="pi pi-times" (onClick)="deleteUser(user)" styleClass="ui-button-info"></p-button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
